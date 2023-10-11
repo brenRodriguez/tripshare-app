@@ -24,7 +24,8 @@
         </div>
     </div>
 
-    <Card></Card>
+    <Card v-for="(evento, index) in eventos" :key="index" :titulo="evento?.titulo" :descripcion="evento?.descripcion" :precio="evento?.precio" :fecha="evento?.fecha"
+></Card>
 
 </template>
 
@@ -40,6 +41,26 @@
 <script setup>
 import { ref } from 'vue'
 import Card from '../components/Card.vue'
+import { stringifyQuery } from 'vue-router';
+
+const eventos = ref([{
+    titulo: "lugar",
+    descripcion: "descr",
+    precio: 54364,
+    fecha: new Date()
+},
+{
+    titulo: "para",
+    descripcion: "descr",
+    precio: 874,
+    fecha: new Date()
+},
+{
+    titulo: "probar",
+    descripcion: "descr",
+    precio: 298,
+    fecha: new Date()
+}])
 
 
 </script>
