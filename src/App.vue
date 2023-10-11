@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import Footer from './components/FooterTS.vue'
+
+</script>
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -30,6 +33,8 @@
   <div class="container">
     <RouterView></RouterView>
   </div>
+
+  <Footer></Footer>
 </template>
 
 <style scoped></style>
