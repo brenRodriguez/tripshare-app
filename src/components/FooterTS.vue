@@ -78,7 +78,7 @@
   font-family: 'Montserrat', sans-serif;
     background-color:  #0c3c34;
     color: white;
-    height: 100vh;
+    height: 100;
     /* text-align: center; */
 }
 
