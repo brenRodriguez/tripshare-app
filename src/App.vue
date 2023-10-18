@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import Footer from './components/FooterTS.vue'
+
+</script>
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -21,15 +24,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <router-link class="nav-link" to="/eventos">Eventos</router-link>
+          <router-link class="nav-link" to="/eventos">Ver Eventos</router-link>
+        </li>
+        <li class="nav-item active">
+          <router-link class="nav-link" to="/crearEventos">Crear Eventos</router-link>
         </li>
       </ul>
     </div>
   </nav>
 
-  <div class="container">
     <RouterView></RouterView>
-  </div>
+
+  <Footer></Footer>
 </template>
 
 <style scoped></style>

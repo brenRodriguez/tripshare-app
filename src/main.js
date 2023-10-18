@@ -7,6 +7,7 @@ import App from './App.vue'
 
 import Home from '../src/views/home.vue'
 import Eventos from '../src/views/eventos.vue'
+import CrearEventos from '../src/views/crearEventos.vue'
 
 const routes = [
     {
@@ -16,10 +17,13 @@ const routes = [
       {
         path: '/eventos',
         component: Eventos,
-      }
-    ];
-    
-    const router = createRouter({
+      },
+      
+      {
+        path: '/CrearEventos',
+        component: CrearEventos,
+      }]
+const router = createRouter({
       history: createWebHistory(),
       routes,
     });
