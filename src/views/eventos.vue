@@ -33,8 +33,8 @@
   </div>
 
   <div class="d-flex" style="flex-wrap: wrap; justify-content: space-between; gap: 20px">
-    <Card v-for="(evento, index) in eventosFiltrados" :key="index" :titulo="evento?.titulo"
-      :descripcion="evento?.descripcion" :precio="evento?.precio" :cantidad="evento?.cantidad" :fecha="evento?.fecha">
+    <Card v-for="(evento, index) in eventosFiltrados" :key="index" :id="evento?.id" :titulo="evento?.titulo"
+      :descripcion="evento?.descripcion" :precio="evento?.precio" :cantidad="evento?.cantidad" :fecha="evento?.fecha" :cantMax="evento?.cantidadMaxima">
     </Card>
   </div>
 </template>
@@ -57,6 +57,8 @@ const titulo = ref("");
 const descripcion = ref("");
 const precio = ref("");
 const fecha = ref("");
+
+
 
 fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/evento")
   .then((response) => {
