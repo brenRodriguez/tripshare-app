@@ -2,7 +2,7 @@
     <div class="container">
       <h1>Crear evento</h1>
   
-      <form action="">
+      <form>
         <div class="d-flex" style="gap: 20px; flex-direction: column">
           <div class="d-flex"><label>Titulo:</label> <input type="text" v-model="titulo" required/></div>
           <div class="d-flex"><label>Precio:</label> <input type="number" v-model="precio" required/></div>
@@ -14,7 +14,7 @@
           
     
           <input 
-            type="submit"
+            type="button"
             class="btn btn-primary"
             value="Crear"
             @click="crearEvento" />
@@ -51,13 +51,12 @@ const fecha = ref("");
   fecha2.setDate(fecha2.getDate() + 1);
   let fechaHoy = new Date();
 
-
  if(titulo.value === "" || descripcion.value === "" || precio.value === "" || fecha.value === "" ){
-    return;
+  alert("Faltan completar datos");
   } if (precio.value < 0) {
     alert("El precio invalido");
     return;
-  } if (cantidadMaxima.value <= 0) {
+  } if (cantMax.value <= 0) {
     alert("Cantidad maxima invalido");
     return;
   }  if (fecha2 < fechaHoy){

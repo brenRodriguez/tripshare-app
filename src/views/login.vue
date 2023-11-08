@@ -1,0 +1,32 @@
+<template>
+  <h1>Inicia Sesion</h1>
+
+  <div class="d-flex">
+    <label>Usuario:</label> <input type="text" v-model="usuario" />
+  </div>
+  <div class="d-flex">
+    <label>Contraseña:</label> <input type="password" v-model="contraseña" />
+  </div>
+  <input
+    type="button"
+    class="btn btn-primary"
+    value="Iniciar sesion"
+    @click="login" />
+
+  </template>
+
+  <script setup>
+    import { ref } from "vue";
+    const usuario = ref("");
+    const contraseña = ref("");
+    const login = ()=>{
+      if(usuario.value === 'ADMIN' && contraseña.value === 'ADMIN'){
+        sessionStorage.setItem("nombre", usuario.value);
+        window.location.replace("http://127.0.0.1:5173/")
+      }else{
+        alert("Usuario o contraseña incorrectos");
+      }
+    }
+</script>
+
+

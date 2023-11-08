@@ -22,6 +22,10 @@ import Footer from './components/FooterTS.vue'
         <li class="nav-item active">
           <router-link class="nav-link" to="/crearEventos">Crear Eventos</router-link>
         </li>
+        <li class="nav-item active">
+          <router-link 
+          class="nav-link" to="/login">Iniciar Sesion</router-link>
+        </li>
       </ul>
     </div>
   </nav>
