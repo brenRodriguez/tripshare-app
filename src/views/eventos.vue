@@ -31,19 +31,28 @@
       </div>
     </div>
   </div>
-
-  <div class="d-flex" style="flex-wrap: wrap; justify-content: space-between; gap: 20px">
-    <Card v-for="(evento, index) in eventosFiltrados" :key="index" :id="evento?.id" :titulo="evento?.titulo"
-      :descripcion="evento?.descripcion" :precio="evento?.precio" :cantidad="evento?.cantidad" :fecha="evento?.fecha" :cantMax="evento?.cantidadMaxima">
-    </Card>
+  <div v-if="isLoading">
+    <div class="d-flex  flex-column justify-content-center align-items-center" style="height: 500px;">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <div v-else>
+    <div class="d-flex" style="flex-wrap: wrap; justify-content: space-between; gap: 20px">
+      <Card v-for="(evento, index) in eventosFiltrados" :key="index" :id="evento?.id" :titulo="evento?.titulo"
+        :descripcion="evento?.descripcion" :precio="evento?.precio" :cantidad="evento?.cantidad" :fecha="evento?.fecha"
+        :cantMax="evento?.cantidadMaxima">
+      </Card>
+    </div>
   </div>
 </template>
 
 <style setup>
-.filter {
-  display: flex;
-  justify-content: space-around;
-}
+  .filter {
+    display: flex;
+    justify-content: space-around;
+  }
 </style>
 
 <script setup>
@@ -57,6 +66,7 @@ const titulo = ref("");
 const descripcion = ref("");
 const precio = ref("");
 const fecha = ref("");
+const isLoading = ref(true);
 
 
 
@@ -71,6 +81,7 @@ fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/evento")
   .then((data) => {
     eventosFiltrados.value = data;
     eventos.value = data;
+    isLoading.value = false;
   })
   .catch((error) => {
     console.log(error);

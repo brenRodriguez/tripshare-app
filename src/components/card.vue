@@ -10,57 +10,69 @@
         Inscriptos:{{ evento.cantidad }}/{{ evento.cantMax }}
       </p>
       <div class="d-flex" style="justify-content: space-between">
-        <input
-          type="button"
-          value="Anotarme"
-          data-bs-toggle="modal"
-          data-bs-target="#anotarseModal"
-          class="btn btn-primary"
-          :disabled="puedoAnotarme()"
-          />
-
-        <input
-          type="button"
-          value="Ver participantes"
-          class="btn btn-primary"
-          size="sm" v-b-modal="'myModal'" e="'item'" 
-          v-if="soyAdmin"/>
-
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+        <input type="button" value="Anotarme" data-bs-toggle="modal" data-bs-target="#anotarseModal"
+          class="btn btn-primary" :disabled="puedoAnotarme()" />
+        <div>
+          <button class="btn btn-primary" @click="openModal" v-if="soyAdmin">Abrir Modal</button>
+          <div v-if="isModalOpen" class="modal-overlay-custom">
+            <div class="modal-custom">
+              <span class="close-custom-btn" @click="closeModal">X</span>
+              <h2>{{ evento.titulo }} </h2><span>{{ evento.descripcion }}</span>
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Recipient:</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Message:</label>
+                  <textarea class="form-control" id="message-text"></textarea>
+                </div>
+              </form>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
+
+<style>
+  .modal-overlay-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .modal-custom {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .close-custom-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+</style>
+ 
 <script setup>
+
+import { ref } from 'vue';
+
 const evento = defineProps({
   id: Number,
   titulo: String,
@@ -75,13 +87,23 @@ const puedoAnotarme = () => {
   return evento.cantidad >= evento.cantMax;
 };
 
+const isModalOpen = ref(false);
+
+const openModal = () => {
+  isModalOpen.value = true;
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
+};
 const soyAdmin = sessionStorage.getItem("nombre") === "ADMIN";
+
 const anotarse = (event) => {
   anotarseEvento(event);
   anotarseUsuario(event);
 };
-const anotarseUsuario = (evento) =>{
-console.log("SOY DIOS ")
+const anotarseUsuario = (evento) => {
+  console.log("SOY DIOS ")
 }
 const anotarseEvento = (event) => {
   const datos = {
