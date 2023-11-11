@@ -1,0 +1,296 @@
+<template>
+    <div class="showcase">
+        <a href="#" class="travel-card">
+            <div class="image">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+            </div>
+            <div class="content">
+                <label class="category">{{ evento.titulo }}</label>
+                <h1 class="topic">{{ evento.descripcion }}</h1>
+                <div class="recommendation">
+                    <div class="score">
+                        <span>{{ evento.fecha }}</span>
+                    </div>
+                    <div class="comment">({{ evento.cantidad }}/{{ evento.cantMax }} Inscriptos)</div>
+                </div>
+                <div class="price">
+                    <div class="d-flex" style="gap: 4px;">
+                        <button class="btn btn-primary discount-info" :disabled="puedoAnotarme()"
+                            @click="openModal(FormInscripcion)">Anotarme</button>
+                        <button class="btn btn-primary" @click="openModal(TablaInscriptos)">Ver inscriptos</button>
+
+                    </div>
+                    <div class="original-price">${{ evento.precio }}</div>
+                </div>
+            </div>
+            <div>
+                <div v-if="isModalOpen" class="modal-overlay-custom">
+                    <div class="modal-custom">
+                        <span class="close-custom-btn" @click="closeModal">X</span>
+                        <h2>{{ evento.titulo }}</h2>
+
+                        <component :is="currentComponent" />
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</template>
+  
+  
+<style>
+.modal-overlay-custom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.modal-custom {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    width: 850px;
+    height: 500px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.close-custom-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.showcase {
+    background-color: #fefefe;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.travel-card {
+    position: relative;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    font-weight: 300;
+    background-color: white;
+    box-shadow: 0px 0px 100px -10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    width: 350px;
+    text-decoration: none;
+
+    &:hover>.button-favorite {
+        display: inline-flex;
+    }
+
+    &:hover>.image>img {
+        transform: scale(1.2);
+    }
+
+    & .image {
+        width: 100%;
+        height: 250px;
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+        overflow: hidden;
+
+        &>img {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://cache-graphicslib.viator.com/graphicslib/page-images/742x525/467829_Viator_Unsplash_170410.jpg');
+            background-position: center;
+            background-size: cover;
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+            transition: all .28s ease-in-out;
+        }
+    }
+
+    &>.content {
+        color: #545454;
+        padding: 1em 1.5em;
+
+        &> :nth-child(1n+2) {
+            margin-top: 1em;
+        }
+
+        &>.category {
+            font-size: 1.2em;
+            color: #bababa;
+        }
+
+        &>.topic {
+            font-size: 1.3em;
+            line-height: calc(1rem * 2.8);
+            word-break: break-all;
+            max-height: calc(1rem * 2.8 * 2);
+            overflow: hidden;
+            position: relative;
+            background-color: white;
+        }
+
+        &>.recommendation {
+            display: flex;
+            align-items: center;
+
+            &>.score {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                background: rgb(254, 207, 139);
+                background: linear-gradient(130deg, rgba(254, 207, 139, 1) 0%, rgba(255, 198, 115, 1) 75%, rgba(255, 187, 88, 1) 100%);
+                color: white;
+                padding: 5px 8px;
+                border-radius: 30px;
+                user-select: none;
+
+                &> :first-child {
+                    padding-top: 1px;
+                    padding-left: 4px;
+                }
+
+                &> :last-child {
+                    font-size: 1.1em;
+                    padding-left: 6px;
+                }
+            }
+
+            &>.comment {
+                color: #bababa;
+                margin-left: 1.5em;
+            }
+        }
+
+        &>.price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+
+            &>.original-price {
+                font-size: 2em;
+            }
+        }
+    }
+
+    &>.button-favorite {
+        width: 2.8em;
+        height: 2.8em;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: white;
+        color: #bababa;
+        border-radius: 50%;
+        box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, .1);
+        user-select: none;
+
+        &:hover> :first-child {
+            display: none;
+        }
+
+        &:hover> :last-child {
+            display: block;
+        }
+
+        &>i {
+            font-size: 1.8em;
+            padding-top: 2px;
+        }
+
+        &> :last-child {
+            display: none;
+            color: #ff5a60;
+        }
+    }
+}
+</style>
+   
+<script setup>
+import { ref } from 'vue';
+import TablaInscriptos from "./TablaInscriptos.vue";
+import FormInscripcion from "./FormAnotarse.vue";
+
+const evento = defineProps({
+    id: Number,
+    titulo: String,
+    precio: Number,
+    fecha: Date,
+    descripcion: String,
+    cantidad: Number,
+    cantMax: Number,
+    //Imagen: imagen
+});
+const puedoAnotarme = () => {
+    return evento.cantidad >= evento.cantMax;
+};
+
+const isModalOpen = ref(false);
+const currentComponent = ref(null);
+
+const openModal = (componentName) => {
+    isModalOpen.value = true;
+    currentComponent.value = componentName;
+};
+
+const closeModal = () => {
+    isModalOpen.value = false;
+};
+const soyAdmin = sessionStorage.getItem("nombre") === "ADMIN";
+
+const anotarse = (event) => {
+    anotarseEvento(event);
+    anotarseUsuario(event);
+};
+const anotarseUsuario = (evento) => {
+    console.log("SOY DIOS ")
+}
+const anotarseEvento = (event) => {
+    const datos = {
+        titulo: event.titulo,
+        descripcion: event.descripcion,
+        precio: event.precio,
+        fecha: event.fecha,
+        cantidad: event.cantidad + 1,
+        cantidadMaxima: event.cantMax,
+    };
+    const url = `https://652f152c0b8d8ddac0b233a9.mockapi.io/evento/${event.id}`;
+
+    const opciones = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(datos),
+    };
+
+    // Realizar la solicitud POST
+    fetch(url, opciones)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Error en la solicitud");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log("Solicitud POST exitosa", data);
+            //location.reload();
+        })
+        .catch((error) => {
+            console.error("Error al enviar la solicitud POST", error);
+        });
+};
+</script>
+  

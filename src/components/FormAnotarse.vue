@@ -1,0 +1,21 @@
+<template>
+    <div>
+        <form id="anotarse">
+            <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Nombre y apellido:</label>
+                <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="form-group">
+                <label for="message-text" class="col-form-label">Mail</label>
+                <textarea class="form-control" id="message-text"></textarea>
+            </div>
+        </form>
+    </div>
+</template>
+  
+<style scoped>
+</style>
+  
+<script setup>
+
+</script>

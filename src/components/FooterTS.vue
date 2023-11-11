@@ -80,7 +80,7 @@
 
 <style>
 /* Footer*/
-#footer {
+footer {
     position: relative;
     z-index: 20;
 }

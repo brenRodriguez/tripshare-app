@@ -15,7 +15,7 @@ import Footer from './components/FooterTS.vue'
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto links-list">
         <li class="nav-item active">
           <router-link class="nav-link" to="/eventos">Ver Eventos</router-link>
         </li>
@@ -24,7 +24,7 @@ import Footer from './components/FooterTS.vue'
         </li>
         <li class="nav-item active">
           <router-link 
-          class="nav-link" to="/login">Iniciar Sesion</router-link>
+          class="nav-link" to="/login">Iniciar Sesión</router-link>
         </li>
       </ul>
     </div>
@@ -34,4 +34,10 @@ import Footer from './components/FooterTS.vue'
 </template>
 
 <style scoped>
+.links-list{
+  width: 100%;
+}
+.nav-item:last-child {
+  margin-left: auto;
+}
 </style>

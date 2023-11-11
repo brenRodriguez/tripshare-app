@@ -5,3 +5,23 @@
    padding: 24px 48px;
    /* background-color: #A1CD73; */
 }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+input[type="date"],
+textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+  border-radius: 4px;
+}
+input:focus,
+textarea:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+  box-shadow: none;
+}
