@@ -1,4 +1,5 @@
 <template>
+    <h2>{{ eventoSeleccionado?.titulo }} - Inscriptos</h2>
     <div>
         <table>
             <thead>
@@ -35,6 +36,12 @@
 </template>
   
 <script setup>
+
+import { useModuloEvento } from '../store/evento';
+
+const store = useModuloEvento();
+const eventoSeleccionado = store.eventoSeleccionado;
+
 </script>
   
 <style scoped>

@@ -16,9 +16,8 @@
                 <div class="price">
                     <div class="d-flex" style="gap: 4px;">
                         <button class="btn btn-primary discount-info" :disabled="puedoAnotarme()"
-                            @click="openModal(FormInscripcion)">Anotarme</button>
-                        <button class="btn btn-primary" @click="openModal(TablaInscriptos)">Ver inscriptos</button>
-
+                            @click="openModal(FormInscripcion, evento)">Anotarme</button>
+                        <button v-if="soyAdmin" class="btn btn-primary" @click="openModal(TablaInscriptos, evento)">Ver inscriptos</button>
                     </div>
                     <div class="original-price">${{ evento.precio }}</div>
                 </div>
@@ -27,8 +26,6 @@
                 <div v-if="isModalOpen" class="modal-overlay-custom">
                     <div class="modal-custom">
                         <span class="close-custom-btn" @click="closeModal">X</span>
-                        <h2>{{ evento.titulo }}</h2>
-
                         <component :is="currentComponent" />
                     </div>
                 </div>
@@ -222,6 +219,7 @@
 import { ref } from 'vue';
 import TablaInscriptos from "./TablaInscriptos.vue";
 import FormInscripcion from "./FormAnotarse.vue";
+import { useModuloEvento } from '../store/evento';
 
 const evento = defineProps({
     id: Number,
@@ -233,6 +231,7 @@ const evento = defineProps({
     cantMax: Number,
     //Imagen: imagen
 });
+const store = useModuloEvento();
 const puedoAnotarme = () => {
     return evento.cantidad >= evento.cantMax;
 };
@@ -240,7 +239,8 @@ const puedoAnotarme = () => {
 const isModalOpen = ref(false);
 const currentComponent = ref(null);
 
-const openModal = (componentName) => {
+const openModal = (componentName, event) => {
+    store?.setEventoSeleccionado(event);
     isModalOpen.value = true;
     currentComponent.value = componentName;
 };
@@ -250,47 +250,6 @@ const closeModal = () => {
 };
 const soyAdmin = sessionStorage.getItem("nombre") === "ADMIN";
 
-const anotarse = (event) => {
-    anotarseEvento(event);
-    anotarseUsuario(event);
-};
-const anotarseUsuario = (evento) => {
-    console.log("SOY DIOS ")
-}
-const anotarseEvento = (event) => {
-    const datos = {
-        titulo: event.titulo,
-        descripcion: event.descripcion,
-        precio: event.precio,
-        fecha: event.fecha,
-        cantidad: event.cantidad + 1,
-        cantidadMaxima: event.cantMax,
-    };
-    const url = `https://652f152c0b8d8ddac0b233a9.mockapi.io/evento/${event.id}`;
 
-    const opciones = {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(datos),
-    };
-
-    // Realizar la solicitud POST
-    fetch(url, opciones)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Error en la solicitud");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log("Solicitud POST exitosa", data);
-            //location.reload();
-        })
-        .catch((error) => {
-            console.error("Error al enviar la solicitud POST", error);
-        });
-};
 </script>
   

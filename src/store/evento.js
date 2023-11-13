@@ -1,8 +1,14 @@
 import { defineStore } from 'pinia';
 
-export const useEventoStore = defineStore('eventoSeleccionado', {
+ 
+export const useModuloEvento = defineStore('store', {
   state: () => ({
-    eventoSeleccionado: { /* datos del evento */ },
+    eventoSeleccionado: {},
   }),
-  // getters, mutations, acciones, etc.
+  actions: {
+    setEventoSeleccionado(nuevoEstado) {
+
+      this.eventoSeleccionado = nuevoEstado;
+    },
+  },
 });
