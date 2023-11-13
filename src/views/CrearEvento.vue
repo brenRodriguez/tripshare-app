@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <h1>Crear evento</h1>
-
     <form>
       <div class="d-flex" style="gap: 20px; flex-direction: column">
         <div class="d-flex"><label>Titulo:</label> <input type="text" v-model="titulo" required /></div>
@@ -11,8 +10,6 @@
           <label>Descripcion:</label> <input type="text" v-model="descripcion" required />
         </div>
         <div class="d-flex"><label>Fecha:</label> <input type="date" v-model="fecha" required /></div>
-
-
         <input type="button" class="btn btn-primary" value="Crear" @click="crearEvento" />
       </div>
     </form>
@@ -22,6 +19,7 @@
 <style setup></style>
   
 <script setup>
+
 import { ref } from "vue";
 
 const titulo = ref("");

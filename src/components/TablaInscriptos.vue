@@ -10,40 +10,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td data-label="Nombre y Apellido">Carlos Perez</td>
-                    <td data-label="Mail">dfnsdjf@gmail.com</td>
-                    <td data-label="Edad">20</td>
-                </tr>
-                <tr>
-                    <td scope="row" data-label="Nombre y Apellido">Sofia Rodriguez</td>
-                    <td data-label="Mail">sofia@hotmail.com</td>
-                    <td data-label="Edad">30</td>
-                </tr>
-                <tr>
-                    <td scope="row" data-label="Nombre y Apellido">Ricardo Lopez</td>
-                    <td data-label="Mail">Ricardo@hotmail.com</td>
-                    <td data-label="Edad">27</td>
-                </tr>
-                <tr>
-                    <td scope="row" data-label="Nombre y Apellido">Maria Fernandez</td>
-                    <td data-label="Mail">Maria@gmail.com</td>
-                    <td data-label="Edad">40</td>
+                <tr v-for="(inscripto, index) in inscriptos" :key="index">
+                    <td data-label="Nombre y Apellido">{{ inscripto.nombre }} {{ inscripto.apellido }}</td>
+                    <td data-label="Mail">{{ inscripto.mail }}</td>
+                    <td data-label="Edad">{{ inscripto.edad }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </template>
-  
-<script setup>
-
-import { useModuloEvento } from '../store/evento';
-
-const store = useModuloEvento();
-const eventoSeleccionado = store.eventoSeleccionado;
-
-</script>
-  
+    
 <style scoped>
 table {
     border: 1px solid #ccc;
@@ -127,3 +103,17 @@ table th {
 }
 </style>
   
+<script setup>
+
+import { useModuloEvento } from '../store/evento';
+
+const store = useModuloEvento();
+const eventoSeleccionado = store.eventoSeleccionado;
+
+const inscriptos = [
+    { nombre: 'Carlos', apellido: 'Perez', mail: 'dfnsdjf@gmail.com', edad: 20 },
+    { nombre: 'Sofia', apellido: 'Rodriguez', mail: 'sofia@hotmail.com', edad: 30 },
+    { nombre: 'Ricardo', apellido: 'Lopez', mail: 'Ricardo@hotmail.com', edad: 27 },
+    { nombre: 'Maria', apellido: 'Fernandez', mail: 'Maria@gmail.com', edad: 40 },
+];
+</script>

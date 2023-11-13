@@ -1,5 +1,6 @@
 <template>
     <div>
+    <h2>Anotarse a: {{ eventoActual?.titulo }}</h2>
         <form id="anotarse">
             <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Nombre y apellido:</label>
@@ -10,7 +11,7 @@
                 <textarea class="form-control" id="message-text"></textarea>
             </div>
         </form>
-        <button type="button" @click="anotarse(eventoActual)">Anotarme</button>
+        <button type="button" class="btn btn-primary" @click="anotarse(eventoActual)">Anotarme</button>
     </div>
 </template>
   

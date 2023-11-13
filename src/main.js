@@ -6,9 +6,9 @@ import { createPinia } from 'pinia';
 import App from './App.vue'
 
 import Home from '../src/views/home.vue'
-import Eventos from '../src/views/eventos.vue'
-import CrearEventos from '../src/views/crearEventos.vue'
-import LoginComponent from '../src/views/login.vue'
+import Eventos from '../src/views/HomeEventos.vue'
+import CrearEventos from '../src/views/CrearEvento.vue'
+import LoginComponent from '../src/views/LoginView.vue'
 
 const routes = [
   {

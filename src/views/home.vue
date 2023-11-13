@@ -1,6 +1,3 @@
-<script setup>
-//import Novedades from '../components/Carrousel.vue'
-</script>
 <template>
   <body>
     <div class="about-us col-12">
@@ -281,4 +278,5 @@
 /* Min width 992px to Max width 1199px */
 /* Min width 1200px to Max width 1399px */
 /* Min width 1550px */
-/*# sourceMappingURL=faq.css.map */</style>
+/*# sourceMappingURL=faq.css.map */
+</style>

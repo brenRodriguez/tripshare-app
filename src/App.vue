@@ -1,7 +1,3 @@
-<script setup>
-import Footer from './components/FooterTS.vue'
-</script>
-
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
     <ul class="navbar-nav mr-auto">
@@ -23,8 +19,7 @@ import Footer from './components/FooterTS.vue'
           <router-link class="nav-link" to="/crearEventos">Crear Eventos</router-link>
         </li>
         <li class="nav-item active">
-          <router-link 
-          class="nav-link" to="/login">Iniciar Sesión</router-link>
+          <router-link class="nav-link" to="/login">Iniciar Sesión</router-link>
         </li>
       </ul>
     </div>
@@ -34,10 +29,15 @@ import Footer from './components/FooterTS.vue'
 </template>
 
 <style scoped>
-.links-list{
+.links-list {
   width: 100%;
 }
+
 .nav-item:last-child {
   margin-left: auto;
 }
 </style>
+
+<script setup>
+  import Footer from './components/FooterTS.vue'
+</script>

@@ -41,7 +41,7 @@
     </div>
     <div v-else>
       <div class="d-flex" style="flex-wrap: wrap; justify-content: space-between; gap: 20px">
-        <EventCard v-for="(evento, index) in eventosFiltrados" :key="index" :id="evento?.id" :titulo="evento?.titulo"
+        <EventCard v-for="(evento, index) in eventosFiltrados" :key="index" :id="parseInt(evento?.id)" :titulo="evento?.titulo"
           :descripcion="evento?.descripcion" :precio="evento?.precio" :cantidad="evento?.cantidad" :fecha="evento?.fecha"
           :cantMax="evento?.cantidadMaxima">
         </EventCard>
@@ -78,12 +78,14 @@ const isLoading = ref(true);
 fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/evento")
   .then((response) => {
     if (response.status === 200) {
+      console.log("lalalal")
       return response.json();
     } else {
       throw new Error("No se pudo obtener la informacion");
     }
   })
   .then((data) => {
+    console.log({data})
     eventosFiltrados.value = data;
     eventos.value = data;
     isLoading.value = false;
