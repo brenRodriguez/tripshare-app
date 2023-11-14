@@ -18,9 +18,23 @@
         <li class="nav-item active">
           <router-link class="nav-link" to="/crearEventos">Crear Eventos</router-link>
         </li>
-        <li class="nav-item active">
-          <router-link class="nav-link" to="/login">Iniciar Sesión</router-link>
-        </li>
+        <div class="nav-item">
+            <div v-if="!soyAdmin">
+              <li >
+              <router-link class="nav-link" to="/login">Iniciar Sesión</router-link>
+              </li>
+            </div>
+          <div v-if="soyAdmin">
+            <li  >
+            <h5>Bienvenido ADMIN!</h5>
+            </li>
+        </div>
+
+        </div>
+
+
+
+
       </ul>
     </div>
   </nav>
@@ -40,4 +54,7 @@
 
 <script setup>
   import Footer from './components/FooterTS.vue'
+
+  const soyAdmin = sessionStorage.getItem("nombre") === "ADMIN";
+
 </script>

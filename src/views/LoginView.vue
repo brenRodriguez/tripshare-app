@@ -18,7 +18,7 @@ import { ref } from "vue";
   const login = () => {
     if (usuario.value === 'ADMIN' && contraseña.value === 'ADMIN') {
       sessionStorage.setItem("nombre", usuario.value);
-      window.location.replace("http://127.0.0.1:5173/")
+      window.location.replace("http://localhost:5173/")
     } else {
       alert("Usuario o contraseña incorrectos");
     }
