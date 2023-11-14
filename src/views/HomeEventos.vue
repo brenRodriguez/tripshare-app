@@ -78,7 +78,6 @@ const isLoading = ref(true);
 fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/evento")
   .then((response) => {
     if (response.status === 200) {
-      console.log("lalalal")
       return response.json();
     } else {
       throw new Error("No se pudo obtener la informacion");
@@ -86,7 +85,7 @@ fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/evento")
   })
   .then((data) => {
     console.log({data})
-    eventosFiltrados.value = data;
+    eventosFiltrados.value = data.reverse();
     eventos.value = data;
     isLoading.value = false;
   })
@@ -97,8 +96,8 @@ fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/evento")
 const filtrar = () => {
   eventosFiltrados.value = eventos.value.filter((evento) => {
     return evento.titulo === titulo.value || evento.descripcion === descripcion.value || evento.precio === precio.value ||
-      evento.fecha === fecha.value;
-  });
+      evento.fecha === fecha.value;     
+  }).reverse();
 };
 const limpiar = () => {
   eventosFiltrados.value = eventos.value;

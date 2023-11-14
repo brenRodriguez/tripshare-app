@@ -11,8 +11,8 @@
             </thead>
             <tbody>
                 <tr v-for="(inscripto, index) in inscriptos" :key="index">
-                    <td data-label="Nombre y Apellido">{{ inscripto.nombre }} {{ inscripto.apellido }}</td>
-                    <td data-label="Mail">{{ inscripto.mail }}</td>
+                    <td data-label="Nombre y Apellido">{{ inscripto.nombre }}</td>
+                    <td data-label="Mail">{{ inscripto.email }}</td>
                     <td data-label="Edad">{{ inscripto.edad }}</td>
                 </tr>
             </tbody>
@@ -106,14 +106,34 @@ table th {
 <script setup>
 
 import { useModuloEvento } from '../store/evento';
+import {ref} from 'vue';
 
 const store = useModuloEvento();
 const eventoSeleccionado = store.eventoSeleccionado;
+const inscriptos = ref([]);
 
-const inscriptos = [
+fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/usuarios")
+  .then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error("No se pudo obtener la informacion");
+    }
+  })
+  .then((data) => {
+    inscriptos.value = data.filter(val=>val.proyectId == eventoSeleccionado.id);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+
+/* const inscriptos = [
     { nombre: 'Carlos', apellido: 'Perez', mail: 'dfnsdjf@gmail.com', edad: 20 },
     { nombre: 'Sofia', apellido: 'Rodriguez', mail: 'sofia@hotmail.com', edad: 30 },
     { nombre: 'Ricardo', apellido: 'Lopez', mail: 'Ricardo@hotmail.com', edad: 27 },
     { nombre: 'Maria', apellido: 'Fernandez', mail: 'Maria@gmail.com', edad: 40 },
-];
+]; */
+
+
 </script>

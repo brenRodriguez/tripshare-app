@@ -80,6 +80,7 @@ const crearEvento = () => {
     })
     .then((data) => {
       console.log("Solicitud POST exitosa", data);
+      window.location.replace("http://localhost:5173/eventos")
       // Realizar acciones adicionales con la respuesta
     })
     .catch((error) => {

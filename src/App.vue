@@ -5,10 +5,6 @@
         <router-link class="navbar-brand" to="/">Home</router-link>
       </li>
     </ul>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto links-list">
@@ -25,8 +21,9 @@
               </li>
             </div>
           <div v-if="soyAdmin">
-            <li  >
+            <li>
             <h5>Bienvenido ADMIN!</h5>
+            <a href="#" @click="cerrarSesion">Cerrar sesion</a>
             </li>
         </div>
 
@@ -57,4 +54,8 @@
 
   const soyAdmin = sessionStorage.getItem("nombre") === "ADMIN";
 
+  const cerrarSesion =()=>{
+    sessionStorage.clear();
+    location.reload();
+  }
 </script>
