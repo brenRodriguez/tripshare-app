@@ -1,5 +1,7 @@
 <template>
   <body>
+    <P>BIENVENIDOS</P>
+    <H2>TRIPSHARE</H2>
     <div class="about-us col-12">
       <div class="section-title">
         <h2>Sobre nosotros</h2>

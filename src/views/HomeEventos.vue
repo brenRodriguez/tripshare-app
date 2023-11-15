@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container todo">
     <h1>Elegí tu Evento</h1>
 
     <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -51,6 +51,10 @@
 </template>
 
 <style setup>
+.todo{
+  padding: 20px;
+}
+
 .filter {
   display: flex;
   justify-content: space-around;

@@ -1,23 +1,20 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <router-link class="navbar-brand" to="/">Home</router-link>
-      </li>
-    </ul>
-
+<nav class="navbar navbar-expand-lg navbar-light fondo" >
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto links-list">
-        <li class="nav-item active">
-          <router-link class="nav-link" to="/eventos">Ver Eventos</router-link>
-        </li>
-        <li class="nav-item active">
-          <router-link class="nav-link" to="/crearEventos">Crear Eventos</router-link>
+        <li class="nav-item active ">
+        <router-link class="nav-link color" to="/">Home</router-link>
+      </li>
+        <li class="nav-item active ">
+          <router-link class="nav-link color" to="/eventos">Ver Eventos</router-link>
+        </li>
+        <li class="nav-item active color">
+          <router-link class="nav-link color" to="/crearEventos">Crear Eventos</router-link>
         </li>
         <div class="nav-item">
             <div v-if="!soyAdmin">
               <li >
-              <router-link class="nav-link" to="/login">Iniciar Sesión</router-link>
+              <router-link class="nav-link color" to="/login">Iniciar Sesión</router-link>
               </li>
             </div>
           <div v-if="soyAdmin">
@@ -40,6 +37,16 @@
 </template>
 
 <style scoped>
+
+.fondo{
+  max-height: 70px;
+  background-color: #427676;
+  align-items: baseline;
+}
+
+.color{
+  color: white;
+}
 .links-list {
   width: 100%;
 }

@@ -26,7 +26,7 @@
                           <h3>Social</h3>
                           <ul class="links-list">
                               <li><a href="#">Trabajá con nosotros</a></li>
-                              <li><a href="#">Quiero publicitar mi negocio</a></li>
+                              <li><a href="#">Quiero publicitarme</a></li>
                           </ul>
                       </div>
                   </div>
@@ -87,7 +87,7 @@ footer {
 .footer-area {
   font-family: 'Montserrat', sans-serif;
   background-color:  #427676;
-  color: white;
+  color: white  ;
   height: 100%;
 }
 
