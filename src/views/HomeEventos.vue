@@ -13,21 +13,21 @@
         <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
           data-bs-parent="#accordionFlushExample">
           <div class="accordion-body filter">
-            <div class="d-flex">
-              <label>Titulo:</label> <input type="text" v-model="titulo" />
+            <div class="d-flex custom-input">
+              <label>Título:</label> <input type="text" v-model="titulo" />
             </div>
-            <div class="d-flex">
+            <div class="d-flex  custom-input">
               <label>Precio:</label> <input type="number" v-model="precio" />
             </div>
-            <div class="d-flex">
-              <label>Descripcion:</label>
+            <div class="d-flex  custom-input">
+              <label>Descripción:</label>
               <input type="text" v-model="descripcion" />
             </div>
-            <div class="d-flex">
+            <div class="d-flex  custom-input">
               <label>Fecha:</label> <input type="date" v-model="fecha" />
             </div>
-            <input type="button" class="btn btn-primary" value="Buscar" @click="filtrar" />
-            <input type="button" class="btn btn-primary" value="Limpiar" @click="limpiar" />
+            <input type="button" class="btn btn-primary filtro-btn" value="Buscar" @click="filtrar" />
+            <input type="button" class="btn btn-primary filtro-btn" value="Limpiar" @click="limpiar" />
           </div>
         </div>
       </div>
@@ -40,18 +40,30 @@
       </div>
     </div>
     <div v-else>
-      <div class="d-flex" style="flex-wrap: wrap; justify-content: space-between; gap: 20px">
-        <EventCard v-for="(evento, index) in eventosFiltrados" :key="index" :id="parseInt(evento?.id)" :titulo="evento?.titulo"
-          :descripcion="evento?.descripcion" :precio="evento?.precio" :cantidad="evento?.cantidad" :fecha="evento?.fecha"
-          :cantMax="evento?.cantidadMaxima">
-        </EventCard>
+      <!-- Verificar si eventosFiltrados está vacío -->
+      <div v-if="eventosFiltrados.length === 0">
+        <!-- Mostrar el mensaje "No hay resultados" -->
+        <div class="d-flex flex-column align-items-center no-results-container">
+          <img src="../assets/no_results.jpg" />
+          <p>No hay eventos relacionados con esa búsqueda.</p>
+        </div>
+      </div>
+      <!-- Verificar si eventosFiltrados no está vacío -->
+      <div v-else>
+        <!-- Renderizar los eventos filtrados -->
+        <div class="d-flex" style="flex-wrap: wrap; justify-content: space-between; gap: 20px">
+          <EventCard v-for="(evento, index) in eventosFiltrados" :key="index" :id="parseInt(evento?.id)"
+            :titulo="evento?.titulo" :descripcion="evento?.descripcion" :precio="evento?.precio"
+            :cantidad="evento?.cantidad" :fecha="evento?.fecha" :cantMax="evento?.cantidadMaxima">
+          </EventCard>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style setup>
-.todo{
+.todo {
   padding: 20px;
 }
 
@@ -59,8 +71,39 @@
   display: flex;
   justify-content: space-around;
 }
+
 #accordionFlushExample {
   margin-bottom: 32px;
+}
+
+.custom-input {
+  align-items: center;
+  gap: 8px;
+}
+
+.filtro-btn {
+  background-color: #3F9A82;
+  border: 1px solid #3F9A82;
+  font-weight: 600;
+}
+
+.filtro-btn:hover {
+  background-color: #1bbc9b;
+  border: 1px solid #1bbc9b;
+}
+
+.no-results-container {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  font-size: 32px;
+}
+
+.no-results-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 </style>
 
@@ -88,7 +131,6 @@ fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/evento")
     }
   })
   .then((data) => {
-    console.log({data})
     eventosFiltrados.value = data.reverse();
     eventos.value = data;
     isLoading.value = false;
@@ -99,11 +141,15 @@ fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/evento")
 
 const filtrar = () => {
   eventosFiltrados.value = eventos.value.filter((evento) => {
-    return evento.titulo === titulo.value || evento.descripcion === descripcion.value || evento.precio === precio.value ||
-      evento.fecha === fecha.value;     
+    return evento.titulo.toLowerCase() === titulo.value.toLowerCase() || evento.descripcion.toLowerCase() === descripcion.value.toLowerCase() || evento.precio === precio.value ||
+      evento.fecha === fecha.value;
   }).reverse();
 };
 const limpiar = () => {
   eventosFiltrados.value = eventos.value;
+  titulo.value = "";
+  descripcion.value = "";
+  precio.value = "";
+  fecha.value = "";
 }
 </script>

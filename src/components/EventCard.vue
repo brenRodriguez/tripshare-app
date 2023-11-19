@@ -1,12 +1,12 @@
 <template>
     <div class="showcase">
-        <a href="#" class="travel-card">
+        <a class="travel-card">
             <div class="image">
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
             </div>
             <div class="content">
                 <label class="category">{{ evento.titulo }}</label>
-                <h1 class="topic">{{ evento.descripcion }}</h1>
+                <h2 class="topic">{{ evento.descripcion }}</h2>
                 <div class="recommendation">
                     <div class="score">
                         <span>{{ evento.fecha }}</span>
@@ -14,12 +14,14 @@
                     <div class="comment">({{ evento.cantidad }}/{{ evento.cantMax }} Inscriptos)</div>
                 </div>
                 <div class="price">
-                    <div class="d-flex" style="gap: 4px;">
-                        <button class="btn btn-primary discount-info" :disabled="puedoAnotarme()"
-                            @click="openModal(FormInscripcion, evento)">Anotarme</button>
-                        <button v-if="soyAdmin" class="btn btn-primary" @click="openModal(TablaInscriptos, evento)">Ver inscriptos</button>
-                    </div>
                     <div class="original-price">${{ evento.precio }}</div>
+                    <div class="d-flex" style="gap: 4px;">
+                        <button class="btn btn-primary anotarme-btn" :disabled="puedoAnotarme()"
+                            @click="openModal(FormInscripcion, evento)">Anotarme</button>
+                        <button v-if="soyAdmin" class="btn btn-primary inscriptos-btn"
+                            @click="openModal(TablaInscriptos, evento)">Ver
+                            inscriptos</button>
+                    </div>
                 </div>
             </div>
             <div>
@@ -49,6 +51,17 @@
     z-index: 1;
 }
 
+.inscriptos-btn {
+    background-color: #3F9A82;
+    border: 1px solid #3F9A82;
+    font-weight: 600;
+}
+
+.inscriptos-btn:hover {
+    background-color: #1bbc9b;
+    border: 1px solid #1bbc9b;
+}
+
 .modal-custom {
     position: relative;
     background-color: #fff;
@@ -57,13 +70,19 @@
     height: 500px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #000000;
 }
 
 .close-custom-btn {
     position: absolute;
+    font-size: 24px;
     top: 10px;
-    right: 10px;
+    right: 14px;
     cursor: pointer;
+}
+
+.close-custom-btn:hover {
+    font-weight: 600;
 }
 
 .showcase {
@@ -82,7 +101,7 @@
     background-color: white;
     box-shadow: 0px 0px 100px -10px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
-    width: 350px;
+    width: 370px;
     text-decoration: none;
 
     &:hover>.button-favorite {
@@ -133,6 +152,8 @@
             overflow: hidden;
             position: relative;
             background-color: white;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         &>.recommendation {
@@ -146,7 +167,7 @@
                 background: rgb(254, 207, 139);
                 background: linear-gradient(130deg, rgba(254, 207, 139, 1) 0%, rgba(255, 198, 115, 1) 75%, rgba(255, 187, 88, 1) 100%);
                 color: white;
-                padding: 5px 8px;
+                padding: 6px 12px;
                 border-radius: 30px;
                 user-select: none;
 

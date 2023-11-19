@@ -4,11 +4,12 @@
           <div class="container">
               <div class="row">
                   <div class="col-lg-5 col-md-6 col-sm-6">
-                      <div class="single-footer-widget">
+                      <div class="single-footer-widget logo-container">
                           <a class="logo">
                               <!-- <img class="logo-footer" src="png/Logo, fondo oscuro.png" alt="logo"> -->
                           </a>
                           <p><strong>Disfruta viajar</strong></p>
+                          <img src="../assets/tripshare-logo.png" />
                       </div>
                   </div>
                   <div class="col-lg-2 col-md-6 col-sm-6">
@@ -35,8 +36,8 @@
                           <h3>Navegación</h3>
                           <ul class="links-list">
                               <li><a href="#">Home</a></li>
-                              <li><a href="#">Eventos</a></li>
-                              <li><a href="#">Eventos</a></li>
+                              <li><a href="http://localhost:5173/eventos">Ver Eventos</a></li>
+                              <li><a href="http://localhost:5173/crearEventos">Crear Eventos</a></li>
                           </ul>
                       </div>
                   </div>
@@ -64,7 +65,7 @@
               </div>                
               <div class="copyright-area">
                   <ul>
-                      <li><a href=""></a>Politica de Privacidad</li>
+                      <li><a href=""></a>Política de Privacidad</li>
                       <li>|</li>
                       <li>Ayudando a viajeros</li>
                       <li>|</li>
@@ -106,7 +107,9 @@ footer {
     height: 200px;
     margin-left: 80px;
 }
-
+.logo-container img {
+    width: 250px;
+}
 .footer-content .social-links {
     padding-left: 0;
     margin-bottom: 0;
@@ -139,7 +142,9 @@ footer {
     border-radius: 50%;
     font-size: 16px;
 }
-
+.logos-redes img:hover {
+    scale: 1.2;
+}
 .single-footer-widget {
     margin-bottom: 30px;
 }

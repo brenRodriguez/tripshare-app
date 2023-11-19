@@ -7,13 +7,13 @@
           <h1>Inicia Sesión</h1>
         </div>
         <div class="d-flex campo" >
-          <label class="normalWidth" style="margin-left: 5px;">Usuario:</label> <input type="text" class="slots" v-model="usuario" />
+          <label class="normalWidth">Usuario:</label> <input type="text" class="slots" v-model="usuario" />
         </div>
         <div class="d-flex campo">
           <label class="normalWidth">Contraseña:</label> <input type="password" class="slots" v-model="contraseña" />
         </div>
         <div class="d-flex campo">
-          <input type="button" class="btn btn-primary slots" value="Iniciar sesión" @click="login" />
+          <input type="button" class="btn btn-primary slots anotarme-btn centered-btn" value="Iniciar sesión" @click="login" />
         </div>
     </div>
   </div>
@@ -38,15 +38,18 @@ import { ref } from "vue";
 .formulario{
   display: flex;
   flex-direction: column;
-  align-content: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 50px;
+  min-height: 500px;
+}
+.formulario h1{
+  margin-bottom: 24px;
+}
+.campo{
+  align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 50px;
-}
-
-.campo{
-  justify-content: center;
-  gap: 4px;
 }
 
 .slots{
