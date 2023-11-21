@@ -1,12 +1,10 @@
 <template>
   <body>
-    <div class="bienvenida">
-      <P>BIENVENIDOS</P>
-      <br>
-      <H2>TRIPSHARE</H2>
+    <div class="main-container">
+      <h1>¡Bienvenido/a a Trip Share! <br /> Descubre el mundo compartiendo aventuras</h1><img
+        src="../assets/tripshare-main-image.jpg" />
     </div>
-
-    <div class="about-us col-12">
+    <div class="about-us col-12" >
       <div class="section-title">
         <h2>Sobre nosotros</h2>
       </div>
@@ -19,25 +17,27 @@
             </button>
             <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque, mi eu porttitor
-                  laoreet, felis dolor maximus ligula, sed vestibulum nisi mauris id sapien. Aliquam erat volutpat. Nam
-                  urna nunc, lobortis et dolor efficitur, pulvinar congue ligula. Sed accumsan sem non neque venenatis
-                  placerat. In hac habitasse platea dictumst. Integer at sem sed justo maximus hendrerit in eget neque.
-                  Suspendisse laoreet malesuada sem, non imperdiet velit interdum nec. Integer tristique semper diam id
-                  varius. Praesent tincidunt lorem ac velit iaculis, non iaculis magna gravida. Nulla facilisi. In ornare
-                  fringilla fermentum. Donec vel varius massa. Donec mollis, neque ac tempus pharetra, sem nibh tempus
-                  nisl, eu fermentum justo nisl non metus. Suspendisse molestie orci lacinia, varius tellus vitae, varius
-                  ex.
+                <p>TripShare es una innovadora aplicación diseñada para conectar a viajeros solitarios que buscan una
+                  experiencia más enriquecedora durante sus excursiones. Con TripShare, la soledad en tus viajes se
+                  convierte en una oportunidad emocionante para conocer a otros aventureros que comparten tus mismos
+                  destinos y pasiones por explorar el mundo.
                 </p>
                 <p>
-                  Integer faucibus lorem sed ipsum ornare, a blandit lorem ultrices. Ut tincidunt tristique eros vitae
-                  semper. Vivamus a felis arcu. Pellentesque lobortis sed lorem eu tempor. Phasellus rutrum vehicula metus
-                  a aliquet. Sed finibus quam purus, vel accumsan eros dignissim eu. Nullam luctus, mi ac eleifend
-                  maximus, tortor elit egestas ligula, non blandit orci odio quis tortor. Phasellus luctus vehicula
-                  pretium. Fusce arcu erat, rhoncus vitae finibus eu, consequat eget orci. Aliquam finibus congue dui,
-                  eget venenatis magna vulputate eu. Nam ipsum neque, interdum dignissim luctus non, feugiat vitae dui.
-                  Integer sollicitudin lorem vel arcu laoreet, a faucibus augue congue. Nullam eros libero, aliquam non
-                  posuere sed, rhoncus sed libero.</p>
+                  Imagina tener la posibilidad de explorar nuevos lugares junto a compañeros de viaje que comparten tus
+                  intereses. Con TripShare, puedes descubrir fácilmente a otros usuarios que se encuentran en tu misma
+                  ubicación y desean participar en excursiones similares. Ya sea explorar sitios históricos, disfrutar de
+                  la gastronomía local o aventurarse en actividades al aire libre, TripShare te conecta con personas
+                  afines para hacer de cada viaje una experiencia inolvidable.
+                </p>
+                <p>La aplicación ofrece una plataforma intuitiva que te permite crear y unirte a excursiones planificadas
+                  por otros usuarios, facilitando así la coordinación de actividades y la formación de grupos. ¡No más
+                  viajes en solitario aburridos! Con TripShare, cada destino se convierte en una oportunidad para
+                  construir nuevas amistades y compartir momentos emocionantes con compañeros de viaje que comparten tu
+                  espíritu aventurero.
+                </p>
+                <p>Descarga TripShare hoy mismo y descubre cómo transformar tus viajes en una experiencia social y
+                  enriquecedora. ¡Explora, conéctate y comparte con TripShare!
+                </p>
               </div>
             </div>
           </div>
@@ -48,13 +48,12 @@
             </button>
             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                <p>Suspendisse potenti. Nullam luctus, nulla sit amet pellentesque scelerisque, justo libero laoreet
-                  dolor, nec consectetur felis turpis eget elit. Donec luctus massa et ipsum tincidunt, sed tristique
-                  nulla maximus. Ut tristique tempor suscipit. Nam vitae dui non augue suscipit vestibulum. Etiam leo leo,
-                  tristique sed augue sit amet, luctus elementum enim. Fusce pretium a nunc sit amet finibus. Mauris
-                  tincidunt vulputate ipsum a pellentesque. In ultricies vestibulum magna, in dictum felis auctor quis. Ut
-                  in vehicula lacus. Maecenas blandit tincidunt dui, nec tincidunt magna luctus sed. In sit amet sapien ac
-                  ex fringilla laoreet eu sed est. Aenean sed augue at odio tincidunt scelerisque.</p>
+                <p>La misión de TripShare es transformar la experiencia de viajar solo, conectando a viajeros con
+                  intereses similares y facilitando la creación de conexiones significativas. Buscamos eliminar la soledad
+                  en los viajes, permitiendo a los usuarios descubrir compañeros de aventuras, compartir experiencias y
+                  crear recuerdos inolvidables. TripShare aspira a convertir cada destino en una oportunidad para
+                  construir relaciones duraderas y enriquecer la vida de los viajeros solitarios a través de conexiones
+                  auténticas.</p>
               </div>
             </div>
           </div>
@@ -65,12 +64,15 @@
             </button>
             <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                <p>Nam maximus iaculis diam, ut eleifend diam pellentesque sed. In hac habitasse platea dictumst. In hac
-                  habitasse platea dictumst. Cras congue lectus a lorem pellentesque, nec finibus mauris facilisis. Morbi
-                  turpis enim, molestie at posuere nec, laoreet vitae diam. Duis fermentum metus vitae imperdiet eleifend.
-                  Integer ac libero neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-                  cubilia curae; Sed egestas sapien a purus dignissim vehicula. Sed ex erat, aliquam sed ex quis, viverra
-                  varius lorem. Fusce sit amet auctor sem, et pulvinar purus. Vivamus dapibus aliquet facilisis.</p>
+                <p>La visión de TripShare es ser la plataforma líder a nivel mundial que redefine la forma en que las
+                  personas experimentan los viajes. Nos esforzamos por ser la conexión esencial para viajeros solitarios,
+                  inspirándolos a explorar el mundo de manera más significativa a través de la creación de comunidades
+                  temporales en cada destino. Visualizamos un futuro donde TripShare sea reconocido como el facilitador
+                  clave para transformar los viajes individuales en experiencias compartidas, brindando a los usuarios la
+                  posibilidad de construir relaciones significativas mientras descubren nuevos lugares. Con un enfoque
+                  centrado en la innovación y la inclusión, aspiramos a ser el puente que une a los aventureros de todo el
+                  mundo, transformando cada viaje en una oportunidad para el crecimiento personal y la conexión global.
+                </p>
               </div>
             </div>
           </div>
@@ -81,12 +83,14 @@
             </button>
             <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                <p>Morbi vitae sem molestie, ultrices ligula eu, tristique tortor. Suspendisse arcu metus, vehicula vel
-                  quam vulputate, consequat porta mauris. Aliquam eu massa ullamcorper, blandit turpis sit amet, dignissim
-                  velit. Aenean ornare pharetra imperdiet. Ut posuere vestibulum sodales. Donec scelerisque, urna nec
-                  feugiat blandit, lorem sem viverra lacus, non eleifend diam neque vel enim. Cras viverra pulvinar
-                  consequat. Sed consequat vulputate tellus id pharetra. Pellentesque sit amet ipsum molestie, imperdiet
-                  mauris sed, sollicitudin risus. Nunc non pulvinar nunc. Praesent ultrices lectus sed mattis aliquet.</p>
+                <p>
+                  En TripShare, la "comunidad" es más que un concepto; es el tejido que une a viajeros de todo el mundo.
+                  Nuestra plataforma está impulsada por la idea de crear comunidades temporales en cada destino, donde los
+                  usuarios pueden conectarse, compartir experiencias y construir relaciones auténticas. La comunidad en
+                  TripShare representa la diversidad de historias, culturas y amistades que se forman a medida que los
+                  viajeros solitarios se unen para explorar juntos. Es el corazón de nuestra visión de transformar cada
+                  viaje en una oportunidad para pertenecer y enriquecerse a través de conexiones significativas. En
+                  TripShare, la comunidad es el destino.</p>
               </div>
             </div>
           </div>
@@ -98,19 +102,41 @@
 
 <style scoped>
 
-.bienvenida{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 30px;
+.main-container {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
 }
+
+.main-container h1 {
+  font-size: 45px;
+  position: absolute;
+  text-align: center;
+  border-radius: 8px;
+  padding: 8px 16px;
+  background-color: #3F9A82;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+}
+
+.main-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 .about-us {
   background-color: #074b47;
   height: 600px;
   margin: 50px;
   width: 1250px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   
 }
 

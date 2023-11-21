@@ -1,26 +1,39 @@
 <template>
-    <h2>{{ eventoSeleccionado?.titulo }} - Inscriptos</h2>
     <div>
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Nombre y Apellido</th>
-                    <th scope="col">Mail</th>
-                    <th scope="col">Edad</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(inscripto, index) in inscriptos" :key="index">
-                    <td data-label="Nombre y Apellido">{{ inscripto.nombre }}</td>
-                    <td data-label="Mail">{{ inscripto.email }}</td>
-                    <td data-label="Edad">{{ inscripto.edad }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <h2>{{ eventoSeleccionado?.titulo }} - Inscriptos</h2>
+        <div class="modal-inscriptos container-scroll">
+            <template v-if="inscriptos.length === 0">
+                <p>Aún no hay inscriptos para este evento.</p>
+            </template>
+            <template v-else>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre y Apellido</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Edad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(inscripto, index) in inscriptos" :key="index">
+                            <td data-label="Nombre y Apellido">{{ inscripto.nombre }}</td>
+                            <td data-label="Mail">{{ inscripto.email }}</td>
+                            <td data-label="Edad">{{ inscripto.edad }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </template>
+        </div>
     </div>
 </template>
+
     
 <style scoped>
+.modal-inscriptos {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 table {
     border: 1px solid #ccc;
     border-collapse: collapse;
@@ -28,6 +41,7 @@ table {
     padding: 0;
     width: 100%;
     table-layout: fixed;
+    margin-top: 24px;
 }
 
 table caption {
@@ -106,26 +120,26 @@ table th {
 <script setup>
 
 import { useModuloEvento } from '../store/evento';
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 const store = useModuloEvento();
 const eventoSeleccionado = store.eventoSeleccionado;
 const inscriptos = ref([]);
 
 fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/usuarios")
-  .then((response) => {
-    if (response.status === 200) {
-      return response.json();
-    } else {
-      throw new Error("No se pudo obtener la informacion");
-    }
-  })
-  .then((data) => {
-    inscriptos.value = data.filter(val=>val.proyectId == eventoSeleccionado.id);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+    .then((response) => {
+        if (response.status === 200) {
+            return response.json();
+        } else {
+            throw new Error("No se pudo obtener la informacion");
+        }
+    })
+    .then((data) => {
+        inscriptos.value = data.filter(val => val.proyectId == eventoSeleccionado.id);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 
 
 /* const inscriptos = [

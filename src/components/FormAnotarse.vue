@@ -1,6 +1,9 @@
 <template>
-    <div>
-    <h2>Anotarse a: {{ eventoActual?.titulo }}</h2>
+    <div class="form-anotarse">
+        <h2>Anotarse a: {{ eventoActual?.titulo }}</h2>
+        <div class="description-container container-scroll">
+            <h4>Descripción del evento: {{ eventoActual?.descripcion }}</h4>
+        </div>
         <form id="anotarse">
             <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Nombre y apellido:</label>
@@ -11,15 +14,27 @@
                 <input type="number" class="form-control" id="edad" v-model="edad">
             </div>
             <div class="form-group">
-                <label for="message-text" class="col-form-label">Mail</label>
-                <textarea class="form-control" id="message-text" v-model="email"></textarea>
+                <label for="message-text" class="col-form-label">E-Mail:</label>
+                <input type="email" class="form-control" id="message-text" v-model="email"/>
             </div>
         </form>
-        <button type="button" class="btn btn-primary" @click="anotarse(eventoActual)">Anotarme</button>
+        <button type="button" class="btn btn-primary anotarme-btn centered-btn"
+            @click="anotarse(eventoActual)">Anotarme</button>
     </div>
 </template>
   
-<style scoped></style>
+<style scoped>
+.form-anotarse {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.description-container {
+    max-height: 50px;
+    overflow-y: auto;
+}
+</style>
   
 <script setup>
 import { useModuloEvento } from '../store/evento';
@@ -33,11 +48,15 @@ const store = useModuloEvento();
 const eventoActual = store.eventoSeleccionado;
 
 const anotarse = (event) => {
+    if (!nombre.value || !edad.value || !email.value) {
+    alert("Por favor, completa todos los campos antes de anotarte.");
+    return; 
+  }
     anotarseEvento(event);
     anotarseUsuario(event);
 };
 const anotarseUsuario = (evento) => {
-   
+
     const datosUsuario = {
         nombre: nombre.value,
         edad: edad.value,
@@ -46,6 +65,7 @@ const anotarseUsuario = (evento) => {
     }
 
     const url = "https://652f152c0b8d8ddac0b233a9.mockapi.io/usuarios";
+
 
   const opciones = {
     method: "POST",
@@ -103,7 +123,7 @@ const anotarseEvento = (event) => {
 
             setTimeout(() => {
                 location.reload();
-            },"500");
+            }, "500");
             
         })
         .catch((error) => {

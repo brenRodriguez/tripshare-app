@@ -1,25 +1,47 @@
 <template>
-  <div class="container">
-    <h1>Crear evento</h1>
-    <form class="formulario">
-      <div class="d-flex" style="gap: 20px; flex-direction: column">
-        <div class="d-flex"><label>Titulo:</label> <input type="text" v-model="titulo" required /></div>
-        <div class="d-flex"><label>Precio:</label> <input type="number" v-model="precio" required /></div>
-        <div class="d-flex"><label>Cantidad Maxima:</label> <input type="number" v-model="cantMax" required /></div>
-        <div class="d-flex">
-          <label>Descripcion:</label> <input type="text" v-model="descripcion" required />
+  <div class="container ">
+    <div class="crear-evento-container">
+      <h1>Crear evento</h1>
+      <form class="form-crear-evento">
+        <div class="d-flex" style="gap: 20px; flex-direction: column">
+          <div class="d-flex form-field"><label>Título:</label> <input type="text" v-model="titulo" required /></div>
+          <div class="d-flex form-field"><label>Precio:</label> <input type="number" v-model="precio" required /></div>
+          <div class="d-flex form-field"><label>Cantidad Máxima:</label> <input type="number" v-model="cantMax"
+              required /></div>
+          <div class="d-flex form-field">
+            <label>Descripción:</label>
+            <textarea class="form-control" id="message-text" v-model="descripcion"></textarea>
+          </div>
+          <div class="d-flex form-field"><label>Fecha:</label> <input type="date" v-model="fecha" required /></div>
+          <input type="button" class="btn btn-primary anotarme-btn centered-btn" value="Crear" @click="crearEvento" />
         </div>
-        <div class="d-flex"><label>Fecha:</label> <input type="date" v-model="fecha" required /></div>
-        <input type="button" class="btn btn-primary" value="Crear" @click="crearEvento" />
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </template>
   
 <style setup>
+.crear-evento-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  margin: 36px 0;
+}
 
+.form-crear-evento input {
+  min-width: 300px;
+}
 
+.form-field {
+  align-items: center;
+  gap: 8px;
+}
 
+.form-field label {
+  min-width: 130px;
+}
 </style>
   
 <script setup>
