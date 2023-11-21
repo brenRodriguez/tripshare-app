@@ -35,7 +35,7 @@ const router = createRouter({
   routes,
 });
 
-const app = createApp(App); // Cambia el componente inicial si es necesario
+const app = createApp(App);
 app.use(router);
 app.use(pinia);
 app.mount('#app');

@@ -38,7 +38,7 @@ const mail = ref("");
 
 
 const anotarse = () => {
-  // Datos que deseas enviar en la solicitud POST
+
   const datos = {
     nombre: nombre.value,
     edad: edad.value,
@@ -46,20 +46,18 @@ const anotarse = () => {
 
   };
 
-  // URL de la API a la que deseas enviar la solicitud POST
-  const url = "https://652f152c0b8d8ddac0b233a9.mockapi.io/usuarios"; // Reemplaza con la URL correcta
 
-  // Configuración de la solicitud
+  const url = "https://652f152c0b8d8ddac0b233a9.mockapi.io/usuarios";
+
+
   const opciones = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      // Puedes agregar encabezados adicionales si es necesario
     },
     body: JSON.stringify(datos),
   };
 
-  // Realizar la solicitud POST
   fetch(url, opciones)
     .then((response) => {
       if (!response.ok) {
@@ -70,11 +68,9 @@ const anotarse = () => {
     })
     .then((data) => {
       console.log("Solicitud POST exitosa", data);
-      // Realizar acciones adicionales con la respuesta
     })
     .catch((error) => {
       console.error("Error al enviar la solicitud POST", error);
-      // Manejar errores
     });
 };
 
@@ -98,7 +94,6 @@ const anotarseEvento = (event) => {
     body: JSON.stringify(datos),
   };
 
-  // Realizar la solicitud POST
   fetch(url, opciones)
     .then((response) => {
       if (!response.ok) {
@@ -108,7 +103,6 @@ const anotarseEvento = (event) => {
     })
     .then((data) => {
       console.log("Solicitud POST exitosa", data);
-      //location.reload();
     })
     .catch((error) => {
       console.error("Error al enviar la solicitud POST", error);

@@ -39,7 +39,7 @@
 <style scoped>
 
 .fondo{
-  max-height: 70px;
+  max-height: 90px;
   background-color: #427676;
   align-items: baseline;
 }

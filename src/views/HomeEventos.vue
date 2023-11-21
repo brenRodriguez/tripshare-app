@@ -58,6 +58,7 @@
 .filter {
   display: flex;
   justify-content: space-around;
+  padding: 
 }
 #accordionFlushExample {
   margin-bottom: 32px;

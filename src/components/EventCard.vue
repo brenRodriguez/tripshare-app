@@ -229,7 +229,6 @@ const evento = defineProps({
     descripcion: String,
     cantidad: Number,
     cantMax: Number,
-    //Imagen: imagen
 });
 const store = useModuloEvento();
 const puedoAnotarme = () => {

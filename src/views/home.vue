@@ -1,7 +1,11 @@
 <template>
   <body>
-    <P>BIENVENIDOS</P>
-    <H2>TRIPSHARE</H2>
+    <div class="bienvenida">
+      <P>BIENVENIDOS</P>
+      <br>
+      <H2>TRIPSHARE</H2>
+    </div>
+
     <div class="about-us col-12">
       <div class="section-title">
         <h2>Sobre nosotros</h2>
@@ -93,9 +97,21 @@
 </template>
 
 <style scoped>
+
+.bienvenida{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
 .about-us {
   background-color: #074b47;
   height: 600px;
+  margin: 50px;
+  width: 1250px;
+  border-radius: 10px;
+  
 }
 
 .section-title {
@@ -277,8 +293,4 @@
   }
 }
 
-/* Min width 992px to Max width 1199px */
-/* Min width 1200px to Max width 1399px */
-/* Min width 1550px */
-/*# sourceMappingURL=faq.css.map */
 </style>

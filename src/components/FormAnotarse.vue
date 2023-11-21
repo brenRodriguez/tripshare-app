@@ -45,20 +45,16 @@ const anotarseUsuario = (evento) => {
         proyectId: evento.id,
     }
 
-    const url = "https://652f152c0b8d8ddac0b233a9.mockapi.io/usuarios"; // Reemplaza con la URL correcta
+    const url = "https://652f152c0b8d8ddac0b233a9.mockapi.io/usuarios";
 
-
-  // Configuración de la solicitud
   const opciones = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      // Puedes agregar encabezados adicionales si es necesario
     },
     body: JSON.stringify(datosUsuario),
   };
 
-  // Realizar la solicitud POST
   fetch(url, opciones)
     .then((response) => {
       if (!response.ok) {
@@ -68,11 +64,9 @@ const anotarseUsuario = (evento) => {
     })
     .then((data) => {
       console.log("Solicitud POST exitosa", data);
-      // Realizar acciones adicionales con la respuesta
     })
     .catch((error) => {
       console.error("Error al enviar la solicitud POST", error);
-      // Manejar errores
     });
 };
 
@@ -96,7 +90,6 @@ const anotarseEvento = (event) => {
         body: JSON.stringify(datos),
     };
 
-    // Realizar la solicitud POST
     fetch(url, opciones)
         .then((response) => {
             if (!response.ok) {
@@ -110,7 +103,7 @@ const anotarseEvento = (event) => {
 
             setTimeout(() => {
                 location.reload();
-            }, "500");
+            },"500");
             
         })
         .catch((error) => {

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Crear evento</h1>
-    <form>
+    <form class="formulario">
       <div class="d-flex" style="gap: 20px; flex-direction: column">
         <div class="d-flex"><label>Titulo:</label> <input type="text" v-model="titulo" required /></div>
         <div class="d-flex"><label>Precio:</label> <input type="number" v-model="precio" required /></div>
@@ -16,7 +16,11 @@
   </div>
 </template>
   
-<style setup></style>
+<style setup>
+
+
+
+</style>
   
 <script setup>
 
@@ -30,7 +34,7 @@ const fecha = ref("");
 
 
 const crearEvento = () => {
-  // Datos que deseas enviar en la solicitud POST
+  
   const datos = {
     titulo: titulo.value,
     descripcion: descripcion.value,
@@ -57,20 +61,18 @@ const crearEvento = () => {
     return;
   }
 
-  // URL de la API a la que deseas enviar la solicitud POST
-  const url = "https://652f152c0b8d8ddac0b233a9.mockapi.io/evento"; // Reemplaza con la URL correcta
+  
+  const url = "https://652f152c0b8d8ddac0b233a9.mockapi.io/evento"; 
 
-  // Configuración de la solicitud
+  
   const opciones = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      // Puedes agregar encabezados adicionales si es necesario
     },
     body: JSON.stringify(datos),
   };
 
-  // Realizar la solicitud POST
   fetch(url, opciones)
     .then((response) => {
       if (!response.ok) {
@@ -81,11 +83,9 @@ const crearEvento = () => {
     .then((data) => {
       console.log("Solicitud POST exitosa", data);
       window.location.replace("http://localhost:5173/eventos")
-      // Realizar acciones adicionales con la respuesta
     })
     .catch((error) => {
       console.error("Error al enviar la solicitud POST", error);
-      // Manejar errores
     });
 };
 </script>
