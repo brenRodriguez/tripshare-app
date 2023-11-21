@@ -131,8 +131,8 @@
 .about-us {
   background-color: #074b47;
   height: 600px;
-  margin: 50px;
-  width: 1250px;
+  margin: 50px auto;
+  width: 80%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
