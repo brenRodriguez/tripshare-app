@@ -38,6 +38,7 @@
                               <li><a href="#">Home</a></li>
                               <li><a href="http://localhost:5173/eventos">Ver Eventos</a></li>
                               <li><a href="http://localhost:5173/crearEventos">Crear Eventos</a></li>
+                              <li><a href="http://localhost:5173/verEstadisticas">Ver Estadisticas</a></li>
                           </ul>
                       </div>
                   </div>

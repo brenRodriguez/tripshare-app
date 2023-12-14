@@ -9,6 +9,7 @@ import Home from '../src/views/home.vue'
 import Eventos from '../src/views/HomeEventos.vue'
 import CrearEventos from '../src/views/CrearEvento.vue'
 import LoginComponent from '../src/views/LoginView.vue'
+import VerEstadisticas from '../src/views/VerEstadisticas.vue'
 
 const routes = [
   {
@@ -22,6 +23,10 @@ const routes = [
   {
     path: '/CrearEventos',
     component: CrearEventos,
+  },
+  {
+    path: '/VerEstadisticas',
+    component: VerEstadisticas,
   },
   {
     path: '/login',

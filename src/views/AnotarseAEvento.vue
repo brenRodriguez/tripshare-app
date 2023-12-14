@@ -83,6 +83,7 @@ const anotarseEvento = (event) => {
     fecha: event.fecha,
     cantidad: event.cantidad + 1,
     cantidadMaxima: event.cantMax,
+    estado:'ACTIVO'
   };
   const url = `https://652f152c0b8d8ddac0b233a9.mockapi.io/evento/${event.id}`;
 

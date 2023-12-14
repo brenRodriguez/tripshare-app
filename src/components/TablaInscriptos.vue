@@ -19,6 +19,7 @@
                             <td data-label="Nombre y Apellido">{{ inscripto.nombre }}</td>
                             <td data-label="Mail">{{ inscripto.email }}</td>
                             <td data-label="Edad">{{ inscripto.edad }}</td>
+                            <td data-label=""><button type="button" class="btn btn-danger" @click="eliminarInscripto(inscripto)">Eliminar</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -101,10 +102,6 @@ table th {
     }
 
     table td::before {
-        /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
         content: attr(data-label);
         float: left;
         font-weight: bold;
@@ -141,13 +138,66 @@ fetch("https://652f152c0b8d8ddac0b233a9.mockapi.io/usuarios")
         console.log(error);
     });
 
+    const  eliminarInscripto = (inscripto) => {
+    const url = `https://652f152c0b8d8ddac0b233a9.mockapi.io/usuarios/${inscripto.id}`;
 
-/* const inscriptos = [
-    { nombre: 'Carlos', apellido: 'Perez', mail: 'dfnsdjf@gmail.com', edad: 20 },
-    { nombre: 'Sofia', apellido: 'Rodriguez', mail: 'sofia@hotmail.com', edad: 30 },
-    { nombre: 'Ricardo', apellido: 'Lopez', mail: 'Ricardo@hotmail.com', edad: 27 },
-    { nombre: 'Maria', apellido: 'Fernandez', mail: 'Maria@gmail.com', edad: 40 },
-]; */
+    const opciones = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    };
 
+    fetch(url, opciones)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Error en la solicitud");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            alert("ELIMINACION EXITOSA!");
+            borrarseDeEvento(eventoSeleccionado)
+            inscriptos.value  = inscriptos.value.filter(newInscripto => newInscripto.id != inscripto.id);
+        })
+        .catch((error) => {
+            console.error("Error al enviar la solicitud POST", error);
+        });
+        
+};
 
+const borrarseDeEvento = (event) => {
+  const datos = {
+    titulo: event.titulo,
+    descripcion: event.descripcion,
+    precio: event.precio,
+    fecha: event.fecha,
+    cantidad: event.cantidad - 1,
+    cantidadMaxima: event.cantMax,
+    estado:'ACTIVO'
+  };
+  const url = `https://652f152c0b8d8ddac0b233a9.mockapi.io/evento/${event.id}`;
+
+  const opciones = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(datos),
+  };
+
+  fetch(url, opciones)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error en la solicitud");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Solicitud POST exitosa", data);
+    })
+    .catch((error) => {
+      console.error("Error al enviar la solicitud POST", error);
+    });
+};
 </script>

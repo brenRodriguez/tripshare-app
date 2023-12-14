@@ -5,7 +5,12 @@
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
             </div>
             <div class="content">
-                <label class="category">{{ evento.titulo }}</label>
+                <div class="d-flex" style="justify-content: space-between;"> 
+                <h2 class="blue"  v-if="evento.estado == 'ACTIVO'" >{{ evento.titulo }}</h2>
+                <h2 class="red"  v-if="evento.estado != 'ACTIVO'" >{{ evento.titulo }}</h2>
+                <button v-if="soyAdmin && fechaActual(evento.fecha)" class="btn btn-primary"
+                            @click="cambiarEstado(evento)">Cambiar estado</button>
+                        </div>
                 <h2 class="topic">{{ evento.descripcion }}</h2>
                 <div class="recommendation">
                     <div class="score">
@@ -19,8 +24,7 @@
                         <button class="btn btn-primary anotarme-btn" :disabled="puedoAnotarme()"
                             @click="openModal(FormInscripcion, evento)">Anotarme</button>
                         <button v-if="soyAdmin" class="btn btn-primary inscriptos-btn"
-                            @click="openModal(TablaInscriptos, evento)">Ver
-                            inscriptos</button>
+                            @click="openModal(TablaInscriptos, evento)">Ver inscriptos</button>
                     </div>
                 </div>
             </div>
@@ -92,7 +96,12 @@
     justify-content: center;
     align-items: center;
 }
-
+.blue{
+ color: rgb(0, 157, 255);
+}
+.red{
+    color: #dc3136;
+}
 .travel-card {
     position: relative;
     display: inline-flex;
@@ -250,10 +259,11 @@ const evento = defineProps({
     descripcion: String,
     cantidad: Number,
     cantMax: Number,
+    estado:String,
 });
 const store = useModuloEvento();
 const puedoAnotarme = () => {
-    return evento.cantidad >= evento.cantMax;
+    return (evento.cantidad >= evento.cantMax ||  evento.estado != 'ACTIVO');
 };
 
 const isModalOpen = ref(false);
@@ -267,9 +277,58 @@ const openModal = (componentName, event) => {
 
 const closeModal = () => {
     isModalOpen.value = false;
+    if(currentComponent.value.__name == 'TablaInscriptos'){
+        location.reload();
+    }
 };
+
+const cambiarEstado = (event) => {
+    let miEstado = 'ACTIVO'
+    if(event.estado == 'ACTIVO'){
+        miEstado = 'INACTIVO'
+    }
+    const datos = {
+    titulo: event.titulo,
+    descripcion: event.descripcion,
+    precio: event.precio,
+    fecha: event.fecha,
+    cantidad: event.cantidad,
+    cantidadMaxima: event.cantMax,
+    estado:miEstado
+  };
+  const url = `https://652f152c0b8d8ddac0b233a9.mockapi.io/evento/${event.id}`;
+
+  const opciones = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(datos),
+  };
+
+  fetch(url, opciones)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error en la solicitud");
+      }
+      return response.json();
+    })
+    .then((data) => {
+        location.reload();
+    })
+    .catch((error) => {
+      console.error("Error al enviar la solicitud POST", error);
+    });
+};
+
 const soyAdmin = sessionStorage.getItem("nombre") === "ADMIN";
 
 
+const fechaActual = (fecha) => {
+    let fecha2 = new Date(fecha)
+    fecha2.setDate(fecha2.getDate() + 1);
+    let fechaHoy = new Date();
+    return fecha2 > fechaHoy;
+}
 </script>
   

@@ -14,17 +14,17 @@
           data-bs-parent="#accordionFlushExample">
           <div class="accordion-body filter">
             <div class="d-flex custom-input">
-              <label>Título:</label> <input type="text" v-model="titulo" />
+              <label>Título:</label> <input type="text" v-model="titulo" @change="filtrar"/>
             </div>
             <div class="d-flex  custom-input">
-              <label>Precio:</label> <input type="number" v-model="precio" />
+              <label>Precio:</label> <input type="number" v-model="precio" @change="filtrar"/>
             </div>
             <div class="d-flex  custom-input">
               <label>Descripción:</label>
-              <input type="text" v-model="descripcion" />
+              <input type="text" v-model="descripcion" @change="filtrar"/>
             </div>
             <div class="d-flex  custom-input">
-              <label>Fecha:</label> <input type="date" v-model="fecha" />
+              <label>Fecha:</label> <input type="date" v-model="fecha" @change="filtrar"/>
             </div>
             <input type="button" class="btn btn-primary filtro-btn" value="Buscar" @click="filtrar" />
             <input type="button" class="btn btn-primary filtro-btn" value="Limpiar" @click="limpiar" />
@@ -54,7 +54,8 @@
         <div class="d-flex" style="flex-wrap: wrap; justify-content: space-between; gap: 20px">
           <EventCard v-for="(evento, index) in eventosFiltrados" :key="index" :id="parseInt(evento?.id)"
             :titulo="evento?.titulo" :descripcion="evento?.descripcion" :precio="evento?.precio"
-            :cantidad="evento?.cantidad" :fecha="evento?.fecha" :cantMax="evento?.cantidadMaxima">
+            :cantidad="evento?.cantidad" :fecha="evento?.fecha" :cantMax="evento?.cantidadMaxima"
+            :estado = "evento?.estado">
           </EventCard>
         </div>
       </div>
@@ -70,7 +71,6 @@
 .filter {
   display: flex;
   justify-content: space-around;
-  padding: 
 }
 
 #accordionFlushExample {

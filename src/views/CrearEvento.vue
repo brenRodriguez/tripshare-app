@@ -63,7 +63,8 @@ const crearEvento = () => {
     precio: precio.value,
     fecha: fecha.value,
     cantidad: 0,
-    cantidadMaxima: cantMax.value
+    cantidadMaxima: cantMax.value,
+    estado:'ACTIVO'
   };
 
   let fecha2 = new Date(fecha.value)

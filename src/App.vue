@@ -11,6 +11,9 @@
         <li class="nav-item active color">
           <router-link class="nav-link color" to="/crearEventos">Crear Eventos</router-link>
         </li>
+        <li class="nav-item active color">
+          <router-link class="nav-link color" to="/verEstadisticas">Ver Estadisticas</router-link>
+        </li>
         <div class="nav-item">
           <div v-if="!soyAdmin">
             <li>
